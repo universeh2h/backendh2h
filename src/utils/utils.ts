@@ -52,3 +52,13 @@ export const groupProductsByProvider = (products?: Product[]): GroupedProducts =
 
     return grouped
   }
+
+
+
+  export const formatDate = (date?: Date): string => {
+    if (!date) return "Rp 0"
+    return new Intl.DateTimeFormat("id-ID", {
+      dateStyle : "medium",
+      minute : "2-digit",
+    }).format(date)
+  }

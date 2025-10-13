@@ -22,6 +22,7 @@ export function useDataAnalysists({
     useEffect(() => {
         const fetchData = async () => {
             try {
+                
                 setLoading(true)
                 const result = await useGetData(`https://pf69lscd-5000.asse.devtunnels.ms/api/v1?startDate=${startDate}&endDate=${endDate}`) 
                 setDataAnalyst(result)
@@ -57,17 +58,16 @@ export function useGetProdukTerbanyak({
     const [error, setError] = useState(null)
     
     useEffect(() => {
-        // FIX 2: Jangan fetch jika kodeReseller kosong
-        if (!kodeReseller) {
-            setDataAnalyst(undefined);
-            setLoading(false);
-            return;
-        }
-
-        const fetchData = async () => {
+             const fetchData = async () => {
             try {
+                let code = undefined
+                if (kodeReseller) {
+                    code = `&kodeReseller=${kodeReseller}`
+                }else {
+                    code = ''
+                }
                 setLoading(true)
-                const result = await useGetData(`https://pf69lscd-5000.asse.devtunnels.ms/api/v1/trxterbanyak?startDate=${startDate}&endDate=${endDate}&kodeReseller=${kodeReseller}`) 
+                const result = await useGetData(`https://pf69lscd-5000.asse.devtunnels.ms/api/v1/trxterbanyak?startDate=${startDate}&endDate=${endDate}${code}`) 
                 setDataAnalyst(result)
                 setError(null)
             } catch (err : any) {
@@ -102,17 +102,16 @@ export function useGetProdukTerCuan({
     const [error, setError] = useState(null)
     
     useEffect(() => {
-        // FIX 2: Jangan fetch jika kodeReseller kosong
-        if (!kodeReseller) {
-            setDataAnalyst(undefined);
-            setLoading(false);
-            return;
-        }
-
+         let code = undefined
+                if (kodeReseller) {
+                    code = `&kodeReseller=${kodeReseller}`
+                }else {
+                    code = ''
+                }
         const fetchData = async () => {
             try {
                 setLoading(true)
-                const result = await useGetData(`https://pf69lscd-5000.asse.devtunnels.ms/api/v1/trxtercuan?startDate=${startDate}&endDate=${endDate}&kodeReseller=${kodeReseller}`) 
+                const result = await useGetData(`https://pf69lscd-5000.asse.devtunnels.ms/api/v1/trxtercuan?startDate=${startDate}&endDate=${endDate}${code}`) 
                 setDataAnalyst(result)
                 setError(null)
             } catch (err : any) {

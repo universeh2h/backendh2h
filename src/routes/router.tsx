@@ -3,6 +3,7 @@ import { AuthProvider } from "@/components/authProvider";
 import LoginPage from "@/components/login";
 import { ProviderComponent } from "@/components/provider";
 import AnalyticsPage from "@/pages/Analytics";
+import { TransactionRealtime } from "@/pages/TransactionRealTime";
 import { createBrowserRouter } from "react-router";
 
 export const router = createBrowserRouter([
@@ -26,4 +27,11 @@ export const router = createBrowserRouter([
       </ProviderComponent>
     ),
   },
+
+  {
+    path : "/realtime",
+    element : (
+      <TransactionRealtime />
+    )
+  }
 ]);

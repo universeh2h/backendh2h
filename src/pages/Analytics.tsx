@@ -118,7 +118,7 @@ dataCuan : {data : TrxTerCuan[]}  |  undefined,
           </div>
         </CardHeader>
 
-        <CardContent className="flex flex-row ">
+        <CardContent className="flex flex-col gap-3 ">
           {data?.data && data.data.length > 0 ? (
             <>
 
