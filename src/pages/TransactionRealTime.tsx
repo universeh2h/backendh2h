@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Footer } from "@/components/Footer";
 
 interface Transaction {
   product_code: string;
@@ -28,6 +29,7 @@ const formatCurrency = (value: number): string => {
 const formatDate = (date?: Date | string): string => {
   if (!date) return "-";
   const dateObj = typeof date === "string" ? new Date(date) : date;
+  dateObj.setHours(dateObj.getHours() - 7);
   return new Intl.DateTimeFormat("id-ID", {
     year: "numeric",
     month: "short",
@@ -46,9 +48,17 @@ const getStatusColor = (status: string) => {
   return "bg-slate-500/20 text-slate-300 border-slate-400/30";
 };
 
-function validationLengthSn(sn: string, length: number): string {
+function validationLengthSn(
+  sn: string,
+  length: number,
+  position: "start" | "end" = "start"
+): string {
   if (sn.length > length) {
-    return sn.slice(0, length) + ".....";
+    if (position === "start") {
+      return sn.slice(0, length) + ".....";
+    } else {
+      return "....." + sn.slice(-length);
+    }
   } else {
     return sn;
   }
@@ -56,10 +66,10 @@ function validationLengthSn(sn: string, length: number): string {
 
 const Star = ({ delay, left }: { delay: number; left: string }) => (
   <motion.div
-    initial={{ y: -10, opacity: 1 }}
-    animate={{ y: window.innerHeight + 10, opacity: 0 }}
-    transition={{ duration: 3 + Math.random() * 2, delay, ease: "linear", repeat: Infinity }}
-    className="absolute text-yellow-300 text-lg pointer-events-none"
+    initial={{ top: "-30px", opacity: 1 }}
+    animate={{ top: "100vh", opacity: 0 }}
+    transition={{ duration: 8, delay, ease: "linear", repeat: Infinity }}
+    className="absolute text-yellow-300 text-3xl pointer-events-none"
     style={{ left }}
   >
     ✨
@@ -76,7 +86,7 @@ export function TransactionRealtime() {
     const starArray = Array.from({ length: 20 }, (_, i) => ({
       id: i,
       left: Math.random() * 100 + "%",
-      delay: Math.random() * 2,
+      delay: Math.random() * 3,
     }));
     setStars(starArray);
   }, []);
@@ -102,9 +112,10 @@ export function TransactionRealtime() {
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 overflow-hidden">
-      {/* Falling Stars Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+    <>
+    <main className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8">
+      {/* Falling Stars Background - Fixed positioning tanpa overflow hidden */}
+      <div className="fixed inset-0 top-0 pointer-events-none">
         {stars.map((star) => (
           <Star key={star.id} left={star.left} delay={star.delay} />
         ))}
@@ -253,7 +264,7 @@ export function TransactionRealtime() {
                                 whileHover={{ scale: 1.1 }}
                                 className="inline-block"
                               >
-                                {tx.sn ? validationLengthSn(tx.sn, 20) : "-"}
+                                {tx.sn ? validationLengthSn(tx.sn, 3,"end") : "-"}
                               </motion.div>
                             </TableCell>
 
@@ -284,39 +295,9 @@ export function TransactionRealtime() {
             </CardContent>
           </Card>
         </motion.div>
-
-        {/* Footer Stats */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="mt-6"
-        >
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="pt-6">
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-sm text-slate-400 mb-2">Total Transaksi</p>
-                  <motion.div
-                    key={transactions.length}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="text-3xl font-bold text-emerald-400"
-                  >
-                    {transactions.length}
-                  </motion.div>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm text-slate-400 mb-2">Status</p>
-                  <Badge className="bg-green-500/20 text-green-300 border border-green-400/30">
-                    Live
-                  </Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
       </div>
+      <Footer />
     </main>
+    </>
   );
 }
