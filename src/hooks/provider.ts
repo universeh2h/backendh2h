@@ -28,15 +28,6 @@ export const providers: ProviderConfig[] = [
         badge: "bg-blue-100 border-blue-300"
       }
     },
-      {
-      provider: "GAME",
-      code: ["GAME"],
-      color: {
-        bg: "bg-blue-50",
-        text: "text-blue-700",
-        badge: "bg-blue-100 border-blue-300"
-      }
-    },
     {
       provider: "AXIS",
       code: ["AXIS"],
@@ -49,6 +40,15 @@ export const providers: ProviderConfig[] = [
     {
       provider: "THREE",
       code: ["THRE", "3", "THP", "THD"],
+      color: {
+        bg: "bg-pink-50",
+        text: "text-pink-700",
+        badge: "bg-pink-100 border-pink-300"
+      }
+    },
+    {
+      provider: "SMARTFREN",
+      code: ["SMART", "SMARTFREN", "SR", "SVOL","SDU","STM","STF","SDN","SRP"],
       color: {
         bg: "bg-pink-50",
         text: "text-pink-700",

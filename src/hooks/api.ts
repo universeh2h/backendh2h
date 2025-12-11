@@ -24,7 +24,7 @@ export function useDataAnalysists({
             try {
                 
                 setLoading(true)
-                const result = await useGetData(`https://pf69lscd-5000.asse.devtunnels.ms/api/v1?startDate=${startDate}&endDate=${endDate}`) 
+                const result = await useGetData(`http://103.184.122.173:4000/api/v1?startDate=${startDate}&endDate=${endDate}`) 
                 setDataAnalyst(result)
                 setError(null)
             } catch (err : any) {
@@ -67,7 +67,7 @@ export function useGetProdukTerbanyak({
                     code = ''
                 }
                 setLoading(true)
-                const result = await useGetData(`https://pf69lscd-5000.asse.devtunnels.ms/api/v1/trxterbanyak?startDate=${startDate}&endDate=${endDate}${code}`) 
+                const result = await useGetData(`http://103.184.122.173:4000/api/v1/trxterbanyak?startDate=${startDate}&endDate=${endDate}${code}`) 
                 setDataAnalyst(result)
                 setError(null)
             } catch (err : any) {
@@ -111,7 +111,7 @@ export function useGetProdukTerCuan({
         const fetchData = async () => {
             try {
                 setLoading(true)
-                const result = await useGetData(`https://pf69lscd-5000.asse.devtunnels.ms/api/v1/trxtercuan?startDate=${startDate}&endDate=${endDate}${code}`) 
+                const result = await useGetData(`http://103.184.122.173:4000/api/v1/trxtercuan?startDate=${startDate}&endDate=${endDate}${code}`) 
                 setDataAnalyst(result)
                 setError(null)
             } catch (err : any) {

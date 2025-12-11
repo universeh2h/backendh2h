@@ -72,9 +72,10 @@ export const getSortedData = (data: TransaksiReseller[] | undefined, sortState :
           aValue = getProviderTotal(a, "THREE");
           bValue = getProviderTotal(b, "THREE");
           break;
-        case "game":
-          aValue = getProviderTotal(a, "GAME");
-          bValue = getProviderTotal(b, "GAME");
+        
+        case "smartfren":
+          aValue = getProviderTotal(a, "SMARTFREN");
+          bValue = getProviderTotal(b, "SMARTFREN");
           break;
         case "other":
           aValue = getProviderTotal(a, "OTHER");

@@ -28,14 +28,15 @@ export const groupProductsByProvider = (products?: Product[]): GroupedProducts =
       XL: [],
       AXIS: [],
       THREE: [],
-      GAME :[],
-      OTHER: []
+      OTHER: [],
+      SMARTFREN : []
     }
 
     products
     .forEach((product: Product) => {
       const productCode = extractLettersOnly(product.kodeOperator)
       let assigned = false
+      console.log(product)
 
       // Check each provider
       for (const provider of providers) {

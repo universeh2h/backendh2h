@@ -14,8 +14,8 @@ export function useProviderTotals(dataAnalyst: ApiResponse<TransaksiResponse> | 
         XL: 0,
         AXIS: 0,
         THREE: 0,
-        GAME: 0,
         OTHER: 0,
+        SMARTFREN :0,
         totalTrx: 0,
         totalLaba: 0
       };
@@ -27,8 +27,8 @@ export function useProviderTotals(dataAnalyst: ApiResponse<TransaksiResponse> | 
       XL: 0,
       AXIS: 0,
       THREE: 0,
-      GAME: 0,
       OTHER: 0,
+      SMARTFREN : 0,
       totalTrx: 0,
       totalLaba: 0
     };
@@ -42,7 +42,7 @@ export function useProviderTotals(dataAnalyst: ApiResponse<TransaksiResponse> | 
       totals.XL += grouped.XL?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
       totals.AXIS += grouped.AXIS?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
       totals.THREE += grouped.THREE?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
-      totals.GAME += grouped.GAME?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
+      totals.SMARTFREN += grouped.SMARTFREN?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
       totals.OTHER += grouped.OTHER?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
       
       // Sum transactions and profit
@@ -66,8 +66,8 @@ export function calculateProviderTotals(dataAnalyst: ApiResponse<TransaksiRespon
       XL: 0,
       AXIS: 0,
       THREE: 0,
-      GAME: 0,
       OTHER: 0,
+      SMARTFREN : 0,
       totalTrx: 0,
       totalLaba: 0
     };
@@ -79,8 +79,8 @@ export function calculateProviderTotals(dataAnalyst: ApiResponse<TransaksiRespon
     XL: 0,
     AXIS: 0,
     THREE: 0,
-    GAME: 0,
     OTHER: 0,
+    SMARTFREN : 0,
     totalTrx: 0,
     totalLaba: 0
   };
@@ -93,7 +93,7 @@ export function calculateProviderTotals(dataAnalyst: ApiResponse<TransaksiRespon
     totals.XL += grouped.XL?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
     totals.AXIS += grouped.AXIS?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
     totals.THREE += grouped.THREE?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
-    totals.GAME += grouped.GAME?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
+    totals.SMARTFREN += grouped.SMARTFREN?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
     totals.OTHER += grouped.OTHER?.reduce((sum, p) => sum + p.total_laba, 0) || 0;
     
     totals.totalTrx += reseller.jumlah_transaksi;

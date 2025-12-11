@@ -42,7 +42,6 @@ export default function ReportDashboard() {
 
  
 
-  // Merge data for comparison charts
   const mergedData = data1?.map((item, index) => ({
     time_range: item.time_range,
     count_member_p1: item.count_member,
@@ -55,17 +54,15 @@ export default function ReportDashboard() {
 
   const handleFetch = async () => {
     try {
-      // Fetch period 1
       const req1 = await fetch(
-        `http://localhost:5000/api/v1/report-kontol?startDate=${period1Start}&endDate=${period1End}`
+        `http://103.184.122.173:4000/api/v1/report-kontol?startDate=${period1Start}&endDate=${period1End}`
       );
       const result1 = await req1.json();
       setData1(result1.data);
 
-      // Fetch period 2 if compare mode is on
       if (compareMode) {
         const req2 = await fetch(
-          `http://localhost:5000/api/v1/report-kontol?startDate=${period2Start}&endDate=${period2End}`
+          `http://103.184.122.173:4000/api/v1/report-kontol?startDate=${period2Start}&endDate=${period2End}`
         );
         const result2 = await req2.json();
         setData2(result2.data);

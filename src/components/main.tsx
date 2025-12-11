@@ -11,7 +11,7 @@ import {
   type GroupedProducts,
 } from "@/utils/utils";
 import { ChevronDown, ChevronRight, ChevronUp } from "lucide-react";
-import { useState, useMemo, type ChangeEvent, type JSX, Fragment } from "react";
+import { useState, type ChangeEvent, type JSX, Fragment } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
@@ -119,6 +119,7 @@ function Component(): JSX.Element {
                       {provider === "AXIS" && "🟣"}
                       {provider === "THREE" && "🩷"}
                       {provider === "GAME" && "🎮"}
+                      {provider === "SMARTFREN" && "SMART"}
                       {provider === "OTHER" && "⚫"}
                       {" " + provider}
                     </CardTitle>
@@ -312,8 +313,9 @@ function Component(): JSX.Element {
                     <TableHead>
                       {renderSortButton("three", "🩷 THREE", "text-pink-700")}
                     </TableHead>
+                    
                     <TableHead>
-                      {renderSortButton("game", "🎮 GAMES", "text-emerald-700")}
+                      {renderSortButton("smartfren", "⚫ SMARTFREN", "text-gray-700")}
                     </TableHead>
                     <TableHead>
                       {renderSortButton("other", "⚫ Other", "text-gray-700")}
@@ -393,7 +395,7 @@ function Component(): JSX.Element {
                             {renderProductGroup(groupedProducts.THREE, "THREE")}
                           </TableCell>
                           <TableCell>
-                            {renderProductGroup(groupedProducts.GAME, "GAME")}
+                            {renderProductGroup(groupedProducts.SMARTFREN, "SMARTFREN")}
                           </TableCell>
                           <TableCell>
                             {renderProductGroup(groupedProducts.OTHER, "OTHER")}
@@ -439,11 +441,12 @@ function Component(): JSX.Element {
                       {formatCurrency(providerTotals.THREE)}
                     </TableCell>
                     <TableCell className="text-emerald-700 font-bold">
-                      {formatCurrency(providerTotals.GAME)}
+                      {formatCurrency(providerTotals.SMARTFREN)}
                     </TableCell>
                     <TableCell className="text-gray-700 font-bold">
                       {formatCurrency(providerTotals.OTHER)}
                     </TableCell>
+                
                   </TableRow>
                 </TableBody>
               </Table>

@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useSearchParams } from "react-router";
 
 export default function AnalyticsPage() {
-  const [searchParams,setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const kodeReseller = searchParams.get("kode_reseller") as string;
 
   const [startDate1, setStartDate1] = useState(
@@ -119,6 +119,7 @@ dataCuan : {data : TrxTerCuan[]}  |  undefined,
         </CardHeader>
 
         <CardContent className="flex flex-col gap-3 ">
+          <h3>URUT DARI TRX</h3>
           {data?.data && data.data.length > 0 ? (
             <>
 
@@ -176,6 +177,7 @@ dataCuan : {data : TrxTerCuan[]}  |  undefined,
             <>
 
               <div className="overflow-x-auto">
+                <h3>URUT BY LABA YAAA</h3>
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b">
@@ -243,7 +245,7 @@ dataCuan : {data : TrxTerCuan[]}  |  undefined,
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-foreground mb-2 uppercase">
-          TOLONG NAIKAN GAJI IT
+            PRODUKSI HITS
         </h1>
         <p className="text-muted-foreground">FIX LABA NAIK YE???</p>
       </div>
