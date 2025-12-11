@@ -11,6 +11,7 @@ export function ProviderComponent({ children }: { children: ReactNode }) {
   const menuItems = [
     { icon: Home, label: "Dashboard", href: "/" },
     { icon: BarChart3, label: "Analytics", href: "/analytics" },
+    { icon: BarChart3, label: "Module", href: "/module" },
   ];
 
   return (

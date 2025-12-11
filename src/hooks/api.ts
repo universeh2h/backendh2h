@@ -131,4 +131,23 @@ export function useGetProdukTerCuan({
 
     return { dataAnalyst, loading, error }
 }
+export type ModulOtomaxType = {
+    kode: string;
+    label: string;
+    saldo: number;
+}
+export function useGetModule(){
+    const [dataModul, setDataModul] =  useState<ModulOtomaxType[]>([])
+    useEffect(() => {
+        const fetchData = async () => {
 
+            const data = await useGetData("http://localhost:4000/api/v1/modul-otomax");
+            setDataModul(data.data);
+        
+        }
+          const interval = setInterval(fetchData, 5000)
+        return () => clearInterval(interval)
+        
+    },[])
+    return {dataModul}
+}

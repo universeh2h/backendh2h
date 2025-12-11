@@ -55,14 +55,14 @@ export default function ReportDashboard() {
   const handleFetch = async () => {
     try {
       const req1 = await fetch(
-        `http://103.184.122.173:4000/api/v1/report-kontol?startDate=${period1Start}&endDate=${period1End}`
+        `http://103.184.122.173:4000/api/v1/report?startDate=${period1Start}&endDate=${period1End}`
       );
       const result1 = await req1.json();
       setData1(result1.data);
 
       if (compareMode) {
         const req2 = await fetch(
-          `http://103.184.122.173:4000/api/v1/report-kontol?startDate=${period2Start}&endDate=${period2End}`
+          `http://103.184.122.173:4000/api/v1/report?startDate=${period2Start}&endDate=${period2End}`
         );
         const result2 = await req2.json();
         setData2(result2.data);
