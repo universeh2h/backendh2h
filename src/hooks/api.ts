@@ -135,13 +135,14 @@ export type ModulOtomaxType = {
     kode: string;
     label: string;
     saldo: number;
+    total_trx : number
 }
-export function useGetModule(){
+export function useGetModule(date : string){
     const [dataModul, setDataModul] =  useState<ModulOtomaxType[]>([])
     useEffect(() => {
         const fetchData = async () => {
 
-            const data = await useGetData("http://localhost:4000/api/v1/modul-otomax");
+            const data = await useGetData(`http://localhost:4000/api/v1/modul-otomax?date=${date}`);
             setDataModul(data.data);
         
         }

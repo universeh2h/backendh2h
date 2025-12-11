@@ -28,7 +28,7 @@ interface ReportKontol {
   total_profit: number;
 }
 
-const dateNow = new Date().toISOString().split("T")[0];
+export const dateNow = new Date().toISOString().split("T")[0];
 
 export default function ReportDashboard() {
   const [period1Start, setPeriod1Start] = useState(dateNow);
