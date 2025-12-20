@@ -132,7 +132,7 @@ export function useGetProdukTerCuan({
     return { dataAnalyst, loading, error }
 }
 export type ModulOtomaxType = {
-    kode: string;
+    kode: string; // htp90
     label: string;
     saldo: number;
     total_trx : number
@@ -142,7 +142,7 @@ export function useGetModule(date : string){
     useEffect(() => {
         const fetchData = async () => {
 
-            const data = await useGetData(`http://localhost:4000/api/v1/modul-otomax?date=${date}`);
+            const data = await useGetData(`http://103.184.122.173:4000/api/v1/modul-otomax?date=${date}`);
             setDataModul(data.data);
         
         }
@@ -152,3 +152,4 @@ export function useGetModule(date : string){
     },[])
     return {dataModul}
 }
+
