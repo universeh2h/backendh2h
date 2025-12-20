@@ -5,6 +5,7 @@ import { ProviderComponent } from "@/components/provider";
 import AnalyticsPage from "@/pages/Analytics";
 import { ModuleOtomax } from "@/pages/Module";
 import ReportKontol from "@/pages/Report";
+import { Test } from "@/pages/Test";
 import { TransactionRealtime } from "@/pages/TransactionRealTime";
 import { createBrowserRouter } from "react-router";
 
@@ -48,6 +49,16 @@ export const router = createBrowserRouter([
             <ProviderComponent>
 
       <ModuleOtomax  />
+            </ProviderComponent>
+
+    )
+  },
+  {
+    path : "/test",
+    element : (
+            <ProviderComponent>
+
+      <Test />
             </ProviderComponent>
 
     )

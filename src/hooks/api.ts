@@ -153,3 +153,31 @@ export function useGetModule(date : string){
     return {dataModul}
 }
 
+export function useGetSaldoModule(kode : number | null){
+    const [dataModul, setDataModul] =  useState<string>("")
+    const [isLoading, setIsLoading] = useState(false)
+    const [open, setOpen] = useState(false)
+
+    if (kode === null) {
+        return {dataModul,isLoading,setOpen,open}
+    }
+    useEffect(() => {
+        setOpen(true)
+        const fetchData = async () => {
+            try {
+                setIsLoading(true)
+                const data = await useGetData(`http://localhost:4000/api/v1/saldo-supplier?kode=${kode}`);
+                setDataModul(data.data);
+            } catch (error) {
+                setDataModul(error instanceof Error ? error.message : 'Error tidak diketahui');
+                setIsLoading(false)
+            } finally {
+                setIsLoading(false)
+            }
+        
+        }
+        fetchData()
+    },[kode])
+    return {dataModul,isLoading,setOpen,open}
+}
+
