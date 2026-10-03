@@ -166,7 +166,7 @@ export function useGetSaldoModule(kode : number | null){
         const fetchData = async () => {
             try {
                 setIsLoading(true)
-                const data = await useGetData(`http://localhost:4000/api/v1/saldo-supplier?kode=${kode}`);
+                const data = await useGetData(`http://103.184.122.173:4000/api/v1/saldo-supplier?kode=${kode}`);
                 setDataModul(data.data);
             } catch (error) {
                 setDataModul(error instanceof Error ? error.message : 'Error tidak diketahui');

@@ -119,7 +119,7 @@ dataCuan : {data : TrxTerCuan[]}  |  undefined,
         </CardHeader>
 
         <CardContent className="flex flex-col gap-3 ">
-          <h3>URUT DARI TRX</h3>
+          <h3>By Trx</h3>
           {data?.data && data.data.length > 0 ? (
             <>
 
@@ -177,7 +177,7 @@ dataCuan : {data : TrxTerCuan[]}  |  undefined,
             <>
 
               <div className="overflow-x-auto">
-                <h3>URUT BY LABA YAAA</h3>
+                <h3>By Laba</h3>
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b">
@@ -242,14 +242,7 @@ dataCuan : {data : TrxTerCuan[]}  |  undefined,
 
   return (
     <main className="p-6 max-w-[1400px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-foreground mb-2 uppercase">
-            PRODUKSI HITS
-        </h1>
-        <p className="text-muted-foreground">FIX LABA NAIK YE???</p>
-      </div>
-
+  
       {/* Comparison Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         {renderPeriodCard(

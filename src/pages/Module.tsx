@@ -5,7 +5,6 @@ import {
   ArrowUp,
   ArrowDown,
   AlertTriangle,
-  TrendingUp,
   Wallet,
 } from "lucide-react";
 import { dateNow } from "./Report";
@@ -20,7 +19,7 @@ export function ModuleOtomax() {
   const [select, setSelectKode] = useState<number | null>(null);
   const [period1Start, setPeriod1Start] = useState(dateNow);
   const { dataModul } = useGetModule(period1Start);
-  const { dataModul: parameter_parsing, isLoading, open, setOpen } = useGetSaldoModule(select);
+  const { dataModul: parameter_parsing, isLoading, open, setOpen } = useGetSaldoModule(select ?? 322);
   
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -58,11 +57,6 @@ export function ModuleOtomax() {
     );
   }, [dataModul]);
 
-  const yellowWarning = useMemo(() => {
-    return dataModul.filter(
-      (modul) => modul.saldo < 1500000 || modul.total_trx < 10
-    );
-  }, [dataModul]);
 
   const totalSaldo = useMemo(() => {
     return dataModul.reduce((sum, modul) => sum + modul.saldo, 0);
@@ -170,8 +164,7 @@ export function ModuleOtomax() {
             </div>
             <div className="text-3xl font-bold text-red-600">
               {criticalBalance.length +
-                lowBalanceModules.length +
-                yellowWarning.length}
+                lowBalanceModules.length}
             </div>
             <p className="text-xs text-slate-500 mt-1">Perlu Perhatian</p>
           </div>
@@ -269,44 +262,7 @@ export function ModuleOtomax() {
           </div>
         )}
 
-        {yellowWarning.length > 0 && (
-          <div className="mb-4 shadow-lg animate-slide-in bg-yellow-50 border border-yellow-400 rounded-lg p-4">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 text-yellow-600 mt-1" />
-              <div className="flex-1">
-                <h3 className="text-lg font-bold text-yellow-800 mb-1">
-                  💡 Aktivitas Rendah!
-                </h3>
-                <p className="mb-2 font-medium text-yellow-900">
-                  Ada {yellowWarning.length} modul dengan saldo dibawah Rp
-                  1.500.000 dan transaksi kurang dari 10:
-                </p>
-                <ul className="mt-2 space-y-1">
-                  {yellowWarning.map((modul) => (
-                    <li
-                      key={modul.kode}
-                      className="flex items-center gap-2 p-2 bg-yellow-100 rounded"
-                    >
-                      <TrendingUp className="h-4 w-4 text-yellow-700" />
-                      <span className="font-medium">{modul.label}</span>
-                      <span className="text-sm text-slate-600">
-                        ({modul.kode})
-                      </span>
-                      <span className="text-sm text-yellow-700 ml-auto">
-                        {new Intl.NumberFormat("id-ID", {
-                          style: "currency",
-                          currency: "IDR",
-                        }).format(modul.saldo)}{" "}
-                        | {modul.total_trx} trx
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        )}
-
+      
         {/* Table */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 border-b border-slate-200">
@@ -367,8 +323,7 @@ export function ModuleOtomax() {
                           ? "blink-row"
                           : lowBalanceModules.includes(modul)
                           ? "bg-red-50 hover:bg-red-100"
-                          : yellowWarning.includes(modul)
-                          ? "bg-yellow-50 hover:bg-yellow-100"
+                          
                           : "hover:bg-slate-50"
                       }`}
                     >
@@ -399,10 +354,8 @@ export function ModuleOtomax() {
                               <AlertTriangle className="h-4 w-4 text-red-600" />
                             )}
                           {!criticalBalance.includes(modul) &&
-                            !lowBalanceModules.includes(modul) &&
-                            yellowWarning.includes(modul) && (
-                              <AlertTriangle className="h-4 w-4 text-yellow-600" />
-                            )}
+                            !lowBalanceModules.includes(modul) 
+                           }
                         </div>
                       </td>
                       <td
@@ -426,8 +379,7 @@ export function ModuleOtomax() {
                             ? "font-bold text-lg"
                             : lowBalanceModules.includes(modul)
                             ? "text-red-700 font-bold"
-                            : yellowWarning.includes(modul)
-                            ? "text-yellow-700 font-semibold"
+                            
                             : "font-medium"
                         }`}
                       >
